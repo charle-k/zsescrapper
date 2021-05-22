@@ -1,0 +1,7 @@
+{
+  "name": "Zse Spyder",
+  "description": "Spyder",
+  "image": "heroku/python",
+  "keywords": ["python", "django" ]
+
+}

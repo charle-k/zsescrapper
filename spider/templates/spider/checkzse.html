@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checking ZSE Prices - {{ sale_date }}</title>
+</head>
+<body>
+Checking ZSE Prices - {{ sale_date }}
+
+<hr>
+<table>
+    {% for r in zse_data %}
+    <tr>
+        <td>{{ r.name }}</td>
+        <td>{{ r.opening }}</td>
+        <td>{{ r.closing }}</td>
+        <td>{{ r.volume }}</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+</body>
+</html>

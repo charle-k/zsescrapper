@@ -60,8 +60,10 @@ def get_zse_data():
                 if count == 1:
                     data['name'] = r
                 if count == 2:
+                    r = r.replace(",", "")
                     data['opening'] = float(r)
                 if count == 3:
+                    r = r.replace(",", "")
                     data['closing'] = float(r)
                 if count == 4:
                     r = r.replace(",", "")

@@ -1,7 +1,17 @@
+# https://www.scrapehero.com/how-to-fake-and-rotate-user-agents-using-python-3/
+
 from datetime import datetime
 
 import requests
 from bs4 import BeautifulSoup
+import random
+
+user_agent_list = [
+'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0',
+'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36',
+'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0',
+'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36',
+]
 
 
 url = "https://www.zse.co.zw/price-sheet/"
@@ -12,13 +22,21 @@ def get_zse_data():
     result = []
     sale_date = None
 
-    page = requests.get(url)
+    # Pick a random user agent
+    user_agent = random.choice(user_agent_list)
+    #print(user_agent)
+    # Set the headers
+    headers = {'User-Agent': user_agent}
+    # Make the request
+
+    page = requests.get(url, headers=headers)
     print('Price Sheet page collected...')
 
     if page.status_code == 200:
-        print("""+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ """)
-        print(page.content)
-        print("""+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ """)
+        print('Page collected.... code 200')
+        #print("""+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ """)
+        #print(page.content)
+        #print("""+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ """)
 
         soup = BeautifulSoup(page.content, 'html5lib')
 

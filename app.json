@@ -1,6 +1,6 @@
 {
-  "name": "Zse Spyder",
-  "description": "Spyder",
+  "name": "ZSE Daily Price Sheet Spyder",
+  "description": "HTML Spider to scrap daily price sheet from Zimbabwe Stock Exchange Website",
   "image": "heroku/python",
   "keywords": ["python", "django" ]
 

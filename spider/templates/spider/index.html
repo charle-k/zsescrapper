@@ -1,0 +1,62 @@
+{% extends 'spider/base.html' %}
+
+{% block content %}
+    {% if zse_data %}
+    <article class="post">
+        <h2>Trading Date - {{ trading_date }}</h2>
+        <p>
+            <div class="row">
+                <div class="col-10">
+                    <table class="table">
+                        <tr>
+                            <th>Counter/Company</th>
+                            <th>Opening Price</th>
+                            <th>Closing Price</th>
+                            <th>Volume/Shares Traded</th>
+                        </tr>
+                        {% for c in counters %}
+                        <tr>
+                            <td>{{ c.name }}</td>
+                            <td>{{ c.opening }}</td>
+                            <td>{{ c.closing }}</td>
+                            <td>{{ c.volume }}</td>
+                        </tr>
+                        {% endfor %}
+
+                    </table>
+                </div>
+
+                <div class="col-2">
+                    <a href="{% url 'spider:daily_pricesheet_listing' %}" class="btn btn-success">See other Daily Price Sheets</a>
+
+                {% if user.is_authenticated %}
+                    <hr />
+                    <p>You can use the link address below in an external cron job to invoke scrapping process</p>
+                    <p><a href="{% url 'spider:check_zse' %}?key={{ scrapping_key }}">Scrap Data from zse.co.zw</a></p>
+                {% else %}
+                    <hr />
+                    To see the scrapping link please,
+                    <a href="{% url 'admin:login' %}">Login</a>
+
+                 {% endif %}
+                </div>
+
+            </div>
+
+
+
+        </p>
+
+    </article>
+
+    {% else %}
+    <article class="post">
+        <h2>There is no ZSE Data scrapped as yet... </h2>
+        <p>why not try to scrap some data?</p>
+        {% if user.is_authenticated %}
+            <p><a href="">Scrap Data from zse.co.zw</a></p>
+        {% endif %}
+    </article>
+    {% endif %}
+
+{% endblock %}

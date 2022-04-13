@@ -30,6 +30,9 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-k_sn@^%3ho4jldq5vjbzv
 DEBUG = config('DEBUG', default=False, cast=bool)
 PRODUCTION = config('PRODUCTION', default=False, cast=bool)
 
+# Used to check if a get request has permission to initiate crawling of ZSE Price Sheet Page
+SCRAPPING_KEY = config('SCRAPPING_KEY', default='', cast=str)
+
 
 ALLOWED_HOSTS = ['*', ]
 
@@ -110,9 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-uk'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Harare'
 
 USE_I18N = True
 

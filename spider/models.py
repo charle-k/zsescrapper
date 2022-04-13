@@ -12,7 +12,7 @@ class ZSEData(models.Model):
 
     class Meta:
         ordering = ['-created']
-        verbose_name_plural = "ZSEData"
+        verbose_name_plural = "ZSE Data"
 
     def __str__(self):
         t = str(self.trading_date) + ' - ' + str(self.id)

@@ -6,6 +6,10 @@ from django.utils import timezone
 from django.core.paginator import Paginator
 from django.conf import settings
 
+from rest_framework import viewsets
+from rest_framework import permissions
+
+from .serializers import ZSEDataSerializer
 from .utils import get_zse_data
 from .models import ZSEData
 
@@ -62,3 +66,14 @@ def daily_pricesheet(request, id):
     return render(request, 'spider/daily_pricesheet.html', {'zse_data': zse_data,
                                                  'trading_date': trading_date,
                                                  'counters': counters})
+
+
+# Django Rest Framework 
+
+class ZSEDataViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows ZSE Daily Pricesheet Data to be viewed or edited.
+    """
+    queryset = ZSEData.objects.all().order_by('-trading_date')
+    serializer_class = ZSEDataSerializer
+    permission_classes = [permissions.IsAuthenticated]
